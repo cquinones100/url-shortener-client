@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Table, Row, Col } from 'react-bootstrap'
+import { API_PATH } from '../../constants'
 
 class LeaderBoard extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class LeaderBoard extends Component {
   }
 
   componentDidMount() {
-    fetch('https://cquinones100-url-shortener.herokuapp.com/urls?order=view_count&direction=desc', {
+    fetch(`${API_PATH}/urls?order=view_count&direction=desc`, {
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, FormGroup, FormControl, Grid, Button, HelpBlock, Alert } from 'react-bootstrap'
+import { API_PATH } from '../../constants'
 
 class UrlForm extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class UrlForm extends Component {
     const { url } = this.state
     e.preventDefault()
 
-    fetch('https://cquinones100-url-shortener.herokuapp.com/urls', {
+    fetch(`${API_PATH}/urls`, {
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
@@ -74,7 +75,6 @@ class UrlForm extends Component {
 
   render() {
     const { url, errors, createdUrl } = this.state
-
 
     return(
       <Grid>
