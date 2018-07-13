@@ -32,7 +32,7 @@ class UrlForm extends Component {
     const { url } = this.state
     e.preventDefault()
 
-    fetch('/urls', {
+    fetch('https://cquinones100-url-shortener.herokuapp.com/urls', {
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
@@ -81,7 +81,7 @@ class UrlForm extends Component {
         { createdUrl && (
           <Alert bsStyle='success'>
             <strong>
-              Your URL was successfully created at <a href={`${window.location.host}/${createdUrl}`}>{`${window.location.host}/${createdUrl}`}</a>
+              Your URL was successfully created at <a href={`http://${window.location.host}/${createdUrl}`}>{`http://${window.location.host}/${createdUrl}`}</a>
             </strong>
           </Alert>
         ) }

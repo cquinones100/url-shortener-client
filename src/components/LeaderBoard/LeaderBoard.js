@@ -11,7 +11,7 @@ class LeaderBoard extends Component {
   }
 
   componentDidMount() {
-    fetch('/urls?order=view_count&direction=desc', {
+    fetch('https://cquinones100-url-shortener.herokuapp.com/urls?order=view_count&direction=desc', {
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
