@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import LoadingUrl from '../LoadingUrl/LoadingUrl'
 import UrlForm from '../UrlForm/UrlForm'
+import { Alert } from 'react-bootstrap'
 
 class HomePage extends Component {
   constructor(props) {
@@ -8,18 +9,20 @@ class HomePage extends Component {
 
     this.state = {
       loading: false,
-      loadingUrl: false
+      loadingUrl: false,
+      notFound: false
     }
   }
 
   componentDidMount() {
-    const shortUrl = window.location.pathname.replace('/', '')
+    const { pathname:shortUrl } = window.location
+    const loadingUrl = shortUrl.replace('/', '')
 
     if (shortUrl !== '/') {
       this.setState({
-        loadingUrl: shortUrl.replace('/')
+        loadingUrl 
       }, () => {
-        fetch(`/${shortUrl}`, {
+        fetch(`/${loadingUrl}`, {
           headers: {
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
@@ -30,10 +33,14 @@ class HomePage extends Component {
 
             if (resp.status === 302) {
               if (url === `http://${window.location.host}/`) { return }
-              return resp.json()
             }
+            return resp.json()
           })
           .then(data => {
+            if (data.message === 'not found') { 
+              return this.setState({ loadingUrl: false, notFound: true })
+            }
+
             window.location = data.url
           })
       })
@@ -41,10 +48,20 @@ class HomePage extends Component {
   }
 
   render() {
-    const { loadingUrl } = this.state
+    const { loadingUrl, notFound } = this.state
 
     if (loadingUrl) { return <LoadingUrl url={loadingUrl}/> }
-    return <UrlForm />
+
+    return (
+      <div>
+        { notFound && (
+          <Alert bsStyle="danger">
+            <strong>URL Not Found</strong> please try again or create a new url
+          </Alert>
+        ) }
+        <UrlForm />
+      </div>
+    )
   }
 }
 
