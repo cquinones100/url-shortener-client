@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LoadingUrl from '../LoadingUrl/LoadingUrl'
 import UrlForm from '../UrlForm/UrlForm'
 import { Alert } from 'react-bootstrap'
+import LeaderBoard from '../LeaderBoard/LeaderBoard'
 
 class HomePage extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class HomePage extends Component {
           </Alert>
         ) }
         <UrlForm />
+        { !loadingUrl && <LeaderBoard /> }
       </div>
     )
   }
