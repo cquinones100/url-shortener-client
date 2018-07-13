@@ -3,6 +3,7 @@ import LoadingUrl from '../LoadingUrl/LoadingUrl'
 import UrlForm from '../UrlForm/UrlForm'
 import { Alert } from 'react-bootstrap'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
+import { API_PATH } from '../../constants'
 
 class HomePage extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class HomePage extends Component {
       this.setState({
         loadingUrl 
       }, () => {
-        fetch(`/${loadingUrl}`, {
+        fetch(`${API_PATH}/${loadingUrl}`, {
           headers: {
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
