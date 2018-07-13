@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, FormGroup, FormControl, Grid, Button, HelpBlock } from 'react-bootstrap'
+import { Row, Col, FormGroup, FormControl, Grid, Button, HelpBlock, Alert } from 'react-bootstrap'
 
 class UrlForm extends Component {
   constructor(props) {
@@ -7,7 +7,8 @@ class UrlForm extends Component {
 
     this.state = {
       url: '',
-      errors: null
+      errors: null,
+      createdUrl: null
     }
   }
 
@@ -51,8 +52,14 @@ class UrlForm extends Component {
     const { errors } = data
 
     if (errors) {
-      this.setState({ errors: errors.original_url })
+      return this.setState({ errors: errors.original_url })
     }
+
+    this.setState({
+      createdUrl: data.url,
+      url: '',
+      errors: null
+    })
   }
 
   getValidationState() {
@@ -66,10 +73,18 @@ class UrlForm extends Component {
   }
 
   render() {
-    const { url, errors } = this.state
+    const { url, errors, createdUrl } = this.state
+
 
     return(
       <Grid>
+        { createdUrl && (
+          <Alert bsStyle='success'>
+            <strong>
+              Your URL was successfully created at <a href={`${window.location.host}/${createdUrl}`}>{`${window.location.host}/${createdUrl}`}</a>
+            </strong>
+          </Alert>
+        ) }
         <Row>
           <Col xs={4} xsOffset={4}>
             <Row>
