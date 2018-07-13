@@ -1,9 +1,9 @@
-import React from 'react'
-import UrlForm from './UrlForm/UrlForm'
+import React, { Component } from 'react'
+import HomePage from './HomePage/HomePage'
 import './App.css'
 
 const App = () => (
-  <UrlForm />
+  <HomePage />
 )
 
 export default App
