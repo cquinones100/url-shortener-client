@@ -14,5 +14,7 @@
 * Change the `API_PATH` to `''`
 * Add a proxy to the top level of `pacakge.json`
 `"proxy": "http://localhost:3001"`
+
+### Run the local server
 * Run `yarn start`
 * Navigate to localhost:3000
